@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Mobile{% endblock title %}
+{% block main-content %}
+<div class="container my-5" style="min-height: 69.2vh;">
+ <div class="row justify-content-around">
+  <div class="col-sm-3">
+    <div class="list-group mb-5">
+        <a href="{% url 'mobile' %}" class="list-group-item list-group-item-action {{blue0}}">All Item</a>
+        <a href="{% url 'mobilelist' 'redmi' %}" class="list-group-item list-group-item-action {{blue1}}">Redmi</a>
+        <a href="{% url 'mobilelist' 'samsung' %}" class="list-group-item list-group-item-action {{blue2}}">Samsung</a>
+        <a href="{% url 'mobilelist' 'upto' %}" class="list-group-item list-group-item-action {{blue3}}">Below 10000</a>
+        <a href="{% url 'mobilelist' 'above' %}" class="list-group-item list-group-item-action {{blue4}}">above 10000</a>
+      </div>
+  </div>
+  <div class="col-sm-8 ">
+   <div class="row ">
+    {% for product in mobile %}
+        <div class="col-sm-4 text-center mb-4 px-0">
+            <a href="{% url 'product-detail' product.id %}" class="btn">
+                <div class="item">
+                    <img src="{{product.product_image.url}}" alt="" height="300" width="100%">
+                    <div class="fw-bold">{{product.title}}</div>
+                    <div class="fw-bold">Rs. {{product.discount_price}} <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small></div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

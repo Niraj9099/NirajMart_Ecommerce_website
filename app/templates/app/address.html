@@ -1,0 +1,46 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Address{% endblock title %}
+{% block main-content %}
+<div class="container my-5" style="min-height: 69.3vh;">
+ <div class="row">
+ <h3>Welcome {{request.user}}</h3>
+  <div class="col-sm-2 border-end">
+   <ul class="list-unstyled">
+    <li class="d-grid"><a href="{% url 'profile' %}" class="btn ">Profile</a></li>
+    <li class="d-grid"><a href="{% url 'address' %}" class="btn btn-primary">Address</a></li>
+   </ul>
+  </div>
+  <div class="col-sm-9 offset-sm-1">
+   <div class="row">
+
+
+    {% if data %}
+    {% for data in data %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h3>Address {{forloop.counter}}</h3>
+                <hr>
+                <p><b>Name :</b>  {{data.name}}</p>
+                <p><b>Village :</b> {{data.village}}</p>
+                <p><b>City :</b> {{data.city}}</p>
+                <p><b>Pincode :</b> {{data.pincode}}</p>
+                <p><b>State :</b> {{data.state}}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% else %}
+    <h4>No Data Found !!!</h4>
+    <div class="text-end">
+        <a href="/profile" class="btn btn-warning mt-3 px-5 fw-bold">Add Address</a>
+    </div>
+    {% endif %}
+    
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

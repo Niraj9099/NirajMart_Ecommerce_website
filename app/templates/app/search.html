@@ -1,0 +1,72 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+
+
+{% block main-content %}
+  
+ </div>
+</div>
+<!-- End 1st Product Slider -->
+
+
+
+<div class="col-sm-12" style="min-height: 50vh; width: 96%;">
+    <div class="row ">
+    {% if data %}    
+     {% for data in data %}
+         <div class="col-sm-3 text-center mb-4 mt-5 py-0 mx-0 px-0 my-0">
+             <a href="{% url 'product-detail' data.id %}" class="btn px-0" >
+                 <div class="item">
+                     <img src="{{data.product_image.url}}" alt="" height="300" width="100%">
+                     <div class="fw-bold">{{data.title}}</div>
+                     <div class="fw-bold">Rs. {{data.discount_price}} <small class="fw-light text-decoration-line-through">{{data.selling_price}}</small></div>
+                 </div>
+             </a>
+         </div>
+     {% endfor %}
+     {% else %}
+     <h3 class=" text-center mt-5 mb-3">Search Data Not Found !!!</h3>
+     {% endif %}
+    </div>
+   </div>
+
+<!-- Payment Info Section -->
+<div class="container my-2">
+    <div class="row">
+     <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+        <img src="{% static 'app/images/payavail/cc.jpg' %}" alt="" srcset="" class="img-fluid">
+        </div>
+      </div>
+     </div>
+     <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+         <img src="{% static 'app/images/payavail/upi.jpg' %}" alt="" srcset="" class="img-fluid">
+        </div>
+      </div>
+     </div>
+     <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+         <img src="{% static 'app/images/payavail/nb.jpg' %}" alt="" srcset="" class="img-fluid">
+        </div>
+      </div>
+     </div>
+     <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+         <img src="{% static 'app/images/payavail/bj.jpg' %}" alt="" srcset="" class="img-fluid">
+        </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- End Payment Info Section -->
+
+
+{% endblock main-content %}
+

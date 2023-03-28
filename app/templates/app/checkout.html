@@ -1,0 +1,58 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Checkout{% endblock title %}
+{% block main-content %}
+<div class="container" style="min-height: 69.3vh;">
+ <div class="row mt-5">
+  <div class="col-sm-6 mb-3">
+    <h4>Order Summary</h4>
+    <hr>
+    {% for cart in cart %}
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5>Product: {{cart.product.title}}</h5>
+          <p>Quantity: {{cart.quantity}} </p>  
+          <p class="fw-bold mt-2">Price: {{cart.Cart_total}}</p>
+        </div>
+      </div>
+    {% endfor %}
+    <a href="/cart" class="btn  p-0 px-2 mb-2" style="text-decoration: none; color: rgb(0, 0, 0); background-color: rgb(206, 200, 194);">Add Quantity</a>
+    <h6 class="mb-5">Total Cost + Shipping Charge 70.0 =  <strong>{{totamount}} /-</strong> </h6>
+    <small>Term and Condition: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe! Iure optio repellat dolor velit, minus rem. Facilis cumque neque numquam laboriosam, accusantium adipisci nisi nihil in et quis?</small>
+  </div>
+  <div class="col-sm-4 offset-sm-1">
+    <h4>Select Shipping Address</h4>
+    <hr>
+    
+    {% if add %}
+    {% for add in add %}
+    <form action="/paymentdone">
+      <div class="card">
+        <div class="card-body">
+          <h5>{{add.name}}</h5>
+          <p>{{add.village}}, {{add.city}}, {{add.state}} - {{add.pincode}}</p>
+        </div> 
+      </div>
+      <div class="form-check mt-2 mb-5">
+          <input class="form-check-input" type="radio" required name="custid" id="custadd{{forloop.counter}}" value="{{add.id}}">
+          <label class="form-check-label fw-bold" for="custadd{{forloop.counter}}">
+            Address: {{forloop.counter}} </label>
+          </div>
+          {% endfor %}
+          {% else %}
+          <div class="text-end">
+            <a href="/profile" class="btn btn-warning mt-3 px-5 fw-bold">Add Address</a>
+          </div>
+          {% endif %}
+       
+        {% if add  %}
+        <div class="text-end">
+          <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Order Now</button>
+        </div>
+        {% endif %}
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}
